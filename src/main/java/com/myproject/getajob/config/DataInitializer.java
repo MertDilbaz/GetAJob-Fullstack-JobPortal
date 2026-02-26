@@ -4,6 +4,7 @@ import com.myproject.getajob.entity.Role;
 import com.myproject.getajob.entity.User;
 import com.myproject.getajob.repository.RoleRepository;
 import com.myproject.getajob.repository.UserRepository;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,14 +12,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Configuration
 public class DataInitializer {
+    Logger logger = Logger.getLogger(DataInitializer.class.getName());
+    org.slf4j.Logger logger1=org.slf4j.LoggerFactory.getLogger(this.getClass());
 
     @Bean
     public CommandLineRunner initData(UserRepository userRepository, RoleRepository roleRepository,
             PasswordEncoder passwordEncoder) {
         return args -> {
+            logger.log(Level.INFO, "UserRepository initialized");
+            logger1.debug("UserRepository initialized");
             System.out.println("DEBUG: DataInitializer STARTED");
             try {
                 // Init Roles
